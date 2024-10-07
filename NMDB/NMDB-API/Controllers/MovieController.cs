@@ -22,5 +22,12 @@ namespace NMDB_API.Controllers
             List<MovieDAO> movies = await _movieService.GetRecentMovies();
             return Ok(movies);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMovieById(int id)
+        {
+            MovieDAO movie = await _movieService.GetMovieById(id);
+            return Ok(movie);
+        }
     }
 }

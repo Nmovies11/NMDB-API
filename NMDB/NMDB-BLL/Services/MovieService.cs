@@ -42,15 +42,47 @@ namespace NMDB_BLL.Services
             return movies;
         }
 
-        public void GetMovieById(int id)
+        public async Task<MovieDAO> GetMovieById(int id)
         {
-            //get movie by id
+            MovieDTO movieDTO = await _movieRepository.GetMovieById(id);
+
+            MovieDAO movie = new MovieDAO
+            {
+                Id = movieDTO.Id,
+                Title = movieDTO.Title,
+                Director = movieDTO.Director,
+                ReleaseDate = movieDTO.ReleaseDate,
+                Description = movieDTO.Description,
+                ImageUrl = movieDTO.ImageUrl
+            };
+
+            return movie;
         }
 
-        public void GetMovieByName(string name)
+        public async Task<List<MovieDAO>> GetMoviesByName()
         {
+            List<MovieDTO> movieDTOs = await _movieRepository.GetMoviesByName();
 
+            List<MovieDAO> movies = new List<MovieDAO>();
+
+            foreach (MovieDTO movieDTO in movieDTOs)
+            {
+                MovieDAO movie = new MovieDAO
+                {
+                    Id = movieDTO.Id,
+                    Title = movieDTO.Title,
+                    Director = movieDTO.Director,
+                    ReleaseDate = movieDTO.ReleaseDate,
+                    Description = movieDTO.Description,
+                    ImageUrl = movieDTO.ImageUrl
+                };
+
+                movies.Add(movie);
+            }
+
+            return movies;
         }
+
         public void GetMovieByDirector(string director)
         {
 

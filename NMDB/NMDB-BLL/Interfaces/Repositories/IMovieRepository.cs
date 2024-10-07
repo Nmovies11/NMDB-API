@@ -10,6 +10,7 @@ namespace NMDB_BLL.Interfaces.Repositories
     public interface IMovieRepository
     {
         public  Task<List<MovieDTO>> GetRecentMovies();
-
+        public Task<MovieDTO> GetMovieById(int id);
+        public Task<List<MovieDTO>> GetMoviesByName();
     }
 }
