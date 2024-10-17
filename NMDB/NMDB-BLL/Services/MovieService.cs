@@ -53,15 +53,16 @@ namespace NMDB_BLL.Services
                 Director = movieDTO.Director,
                 ReleaseDate = movieDTO.ReleaseDate,
                 Description = movieDTO.Description,
-                ImageUrl = movieDTO.ImageUrl
+                ImageUrl = movieDTO.ImageUrl,
+                BackdropUrl = movieDTO.BackdropUrl
             };
 
             return movie;
         }
 
-        public async Task<List<MovieDAO>> GetMoviesByName()
+        public async Task<List<MovieDAO>> GetMoviesByName(string name)
         {
-            List<MovieDTO> movieDTOs = await _movieRepository.GetMoviesByName();
+            List<MovieDTO> movieDTOs = await _movieRepository.GetMoviesByName(name);
 
             List<MovieDAO> movies = new List<MovieDAO>();
 
@@ -74,7 +75,8 @@ namespace NMDB_BLL.Services
                     Director = movieDTO.Director,
                     ReleaseDate = movieDTO.ReleaseDate,
                     Description = movieDTO.Description,
-                    ImageUrl = movieDTO.ImageUrl
+                    ImageUrl = movieDTO.ImageUrl,
+                    BackdropUrl = movieDTO.BackdropUrl
                 };
 
                 movies.Add(movie);

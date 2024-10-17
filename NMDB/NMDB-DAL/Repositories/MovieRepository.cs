@@ -37,17 +37,14 @@ namespace NMDB_DAL.Repositories
             return movie;
         }
 
-        public async Task<List<MovieDTO>> GetMoviesByName()
+        public async Task<List<MovieDTO>> GetMoviesByName(string name)
         {
-            var movies = await _context.movie
-                .OrderBy(m => m.Title)
+            return await _context.movie
+                .Where(m => m.Title.Contains(name))
                 .ToListAsync();
-            if(movies == null)
-            {
-                throw new InvalidOperationException("No movies found.");
-            }
-            return movies;
+
         }
+
 
     }
 }

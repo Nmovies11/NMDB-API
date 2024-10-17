@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace NMDB_BLL.Models
 {
-    public class MovieDAO
+    public class EpisodeDAO
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Director { get; set; }
-        public string Genre { get; set; }
-        public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
-        public string ImageUrl { get; set; }
-        public string BackdropUrl { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public string Director { get; set; }
+        public int Runtime { get; set; }
+        public int ShowId { get; set; }
     }
 }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace NMDB_BLL.Models
 {
-    public class MovieDTO
+    public class ShowDTO
     {
         [Column("id")]
         public int Id { get; set; }
-        [Column("title")] 
+        [Column("title")]
         public string Title { get; set; }
         [Column("description")]
         public string Description { get; set; }
@@ -22,8 +22,5 @@ namespace NMDB_BLL.Models
 
         [Column("poster_url")]
         public string ImageUrl { get; set; }
-        [Column("backdrop_url")]
-        public string BackdropUrl { get; set; }
-
     }
 }
