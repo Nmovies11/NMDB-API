@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NMDB_BLL.Models.Season;
 
-namespace NMDB_BLL.Models
+namespace NMDB_BLL.Models.Show
 {
-    public class MovieDAO
+    public class ShowDAO
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -15,6 +16,7 @@ namespace NMDB_BLL.Models
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public string BackdropUrl { get; set; }
+        
+        public ICollection<SeasonDAO>? Seasons { get; set; }
     }
 }

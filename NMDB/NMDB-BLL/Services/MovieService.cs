@@ -1,5 +1,5 @@
 ﻿using NMDB_BLL.Interfaces.Repositories;
-using NMDB_BLL.Models;
+using NMDB_BLL.Models.Movie;
 using System;
 using System.Collections.Generic;
 using System.Linq;

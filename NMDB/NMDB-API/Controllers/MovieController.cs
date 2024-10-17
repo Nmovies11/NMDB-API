@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NMDB_BLL.Models;
+using NMDB_BLL.Models.Movie;
 using NMDB_BLL.Services;
 
 namespace NMDB_API.Controllers
