@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NMDB_BLL.Models.Movie;
+using NMDB_Common.Entities;
 
 namespace NMDB_BLL.Interfaces.Repositories
 {
     public interface IMovieRepository
     {
-        public  Task<List<MovieDTO>> GetRecentMovies();
-        public Task<MovieDTO> GetMovieById(int id);
-        public Task<List<MovieDTO>> GetMoviesByName(string name);
+        public  Task<List<Movie>> GetRecentMovies();
+        public Task<Movie> GetMovieById(int id);
+        public Task<List<Movie>> GetMoviesByName(string name);
+        public Task<List<Actor>> GetActorsByMovieId(int movieId);
     }
 }

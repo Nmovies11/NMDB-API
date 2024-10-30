@@ -1,10 +1,12 @@
 ﻿using NMDB_BLL.Interfaces.Repositories;
-using NMDB_BLL.Models.Movie;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using NMDB_Common.Entities;
+using NMDB_Common.DTO;
 
 namespace NMDB_BLL.Services
 {
@@ -17,21 +19,19 @@ namespace NMDB_BLL.Services
             _movieRepository = movieRepository;
         }
 
-        public async Task<List<MovieDAO>> GetRecentMovies()
+        public async Task<List<MovieDTO>> GetRecentMovies()
         {
-            List<MovieDTO> movieDTOs = await _movieRepository.GetRecentMovies();
+            List<Movie> movieDTOs = await _movieRepository.GetRecentMovies();
             
-            List<MovieDAO> movies = new List<MovieDAO>();
+            List<MovieDTO> movies = new List<MovieDTO>();
 
-            foreach (MovieDTO movieDTO in movieDTOs)
+            foreach (Movie movieDTO in movieDTOs)
             {
-                MovieDAO movie = new MovieDAO
+                MovieDTO movie = new MovieDTO
                 {
                     Id = movieDTO.Id,
                     Title = movieDTO.Title,
                     Director = movieDTO.Director,
-                    ReleaseDate = movieDTO.ReleaseDate,
-                    Description = movieDTO.Description,
                     ImageUrl = movieDTO.ImageUrl
                 };
 
@@ -42,11 +42,11 @@ namespace NMDB_BLL.Services
             return movies;
         }
 
-        public async Task<MovieDAO> GetMovieById(int id)
+        public async Task<MovieDTODetails> GetMovieById(int id)
         {
-            MovieDTO movieDTO = await _movieRepository.GetMovieById(id);
+            Movie movieDTO = await _movieRepository.GetMovieById(id);
 
-            MovieDAO movie = new MovieDAO
+            MovieDTODetails movie = new MovieDTODetails
             {
                 Id = movieDTO.Id,
                 Title = movieDTO.Title,
@@ -55,28 +55,38 @@ namespace NMDB_BLL.Services
                 Description = movieDTO.Description,
                 ImageUrl = movieDTO.ImageUrl,
                 BackdropUrl = movieDTO.BackdropUrl
+
             };
+
+            var actors = await _movieRepository.GetActorsByMovieId(id);
+            foreach (var actor in actors)
+            {
+                movie.Actors.Add(new ActorDTO
+                {
+                    Id = actor.Id,
+                    Name = actor.Name,
+                    ImageUrl = actor.ImageUrl
+                });
+            }
 
             return movie;
         }
 
-        public async Task<List<MovieDAO>> GetMoviesByName(string name)
+        public async Task<List<MovieDTO>> GetMoviesByName(string name)
         {
-            List<MovieDTO> movieDTOs = await _movieRepository.GetMoviesByName(name);
+            List<Movie> movieDTOs = await _movieRepository.GetMoviesByName(name);
 
-            List<MovieDAO> movies = new List<MovieDAO>();
+            List<MovieDTO> movies = new List<MovieDTO>();
 
-            foreach (MovieDTO movieDTO in movieDTOs)
+            foreach (Movie movieDTO in movieDTOs)
             {
-                MovieDAO movie = new MovieDAO
+                MovieDTO movie = new MovieDTO
                 {
                     Id = movieDTO.Id,
                     Title = movieDTO.Title,
                     Director = movieDTO.Director,
                     ReleaseDate = movieDTO.ReleaseDate,
-                    Description = movieDTO.Description,
                     ImageUrl = movieDTO.ImageUrl,
-                    BackdropUrl = movieDTO.BackdropUrl
                 };
 
                 movies.Add(movie);
@@ -85,14 +95,16 @@ namespace NMDB_BLL.Services
             return movies;
         }
 
+
+
         public void GetMovieByDirector(string director)
         {
-
+            //TODO
         }
 
         public void GetMovieByGenre(string genre)
         {
-
+            //TODO
         }
     }
 }

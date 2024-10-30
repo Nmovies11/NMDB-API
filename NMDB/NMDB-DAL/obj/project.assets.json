@@ -990,11 +990,24 @@
       "NMDB-BLL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "NMDB-Common": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/NMDB-BLL.dll": {}
         },
         "runtime": {
           "bin/placeholder/NMDB-BLL.dll": {}
+        }
+      },
+      "NMDB-Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/NMDB-Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NMDB-Common.dll": {}
         }
       }
     }
@@ -2755,13 +2768,19 @@
       "type": "project",
       "path": "../NMDB-BLL/NMDB-BLL.csproj",
       "msbuildProject": "../NMDB-BLL/NMDB-BLL.csproj"
+    },
+    "NMDB-Common/1.0.0": {
+      "type": "project",
+      "path": "../NMDB-Common/NMDB-Common.csproj",
+      "msbuildProject": "../NMDB-Common/NMDB-Common.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.EntityFrameworkCore >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
-      "NMDB-BLL >= 1.0.0"
+      "NMDB-BLL >= 1.0.0",
+      "NMDB-Common >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2798,6 +2817,9 @@
           "projectReferences": {
             "C:\\Users\\break\\Documents\\School\\Fontys\\Software\\Semester 3\\IP\\Reelio\\NMDB-API\\NMDB\\NMDB-BLL\\NMDB-BLL.csproj": {
               "projectPath": "C:\\Users\\break\\Documents\\School\\Fontys\\Software\\Semester 3\\IP\\Reelio\\NMDB-API\\NMDB\\NMDB-BLL\\NMDB-BLL.csproj"
+            },
+            "C:\\Users\\break\\Documents\\School\\Fontys\\Software\\Semester 3\\IP\\Reelio\\NMDB-API\\NMDB\\NMDB-Common\\NMDB-Common.csproj": {
+              "projectPath": "C:\\Users\\break\\Documents\\School\\Fontys\\Software\\Semester 3\\IP\\Reelio\\NMDB-API\\NMDB\\NMDB-Common\\NMDB-Common.csproj"
             }
           }
         }

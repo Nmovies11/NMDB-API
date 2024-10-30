@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NMDB_BLL.Models
+namespace NMDB_Common.Entities
 {
-    public class EpisodeDTO
+    public class Show
     {
         [Column("id")]
         public int Id { get; set; }
@@ -17,11 +17,11 @@ namespace NMDB_BLL.Models
         public string Description { get; set; }
         [Column("release_date")]
         public DateTime ReleaseDate { get; set; }
-        [Column("director")]
-        public string Director { get; set; }
-        [Column("runtime)]")]   
-        public int Runtime { get; set; }
-        [Column("show_id")]
-        public int ShowId { get; set; }
+        [Column("poster_url")]
+        public string ImageUrl { get; set; }
+        [Column("backdrop_url")]
+        public string BackdropUrl { get; set; }
+
+        public ICollection<Season>? Seasons { get; set; }
     }
 }

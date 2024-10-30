@@ -5,13 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NMDB_BLL.Models
+namespace NMDB_Common.Entities
 {
-    public class MovieDTO
+    public class Episode
     {
         [Column("id")]
         public int Id { get; set; }
-        [Column("title")] 
+        [Column("season_id")]
+        public int SeasonId { get; set; }
+        public Season Season { get; set; }
+        [Column("episode_number")]
+        public int EpisodeNumber { get; set; }
+        [Column("title")]
         public string Title { get; set; }
         [Column("description")]
         public string Description { get; set; }
@@ -19,13 +24,5 @@ namespace NMDB_BLL.Models
         public DateTime ReleaseDate { get; set; }
         [Column("director")]
         public string Director { get; set; }
-
-        [Column("poster_url")]
-        public string ImageUrl { get; set; }
-        [Column("backdrop_url")]
-        public string BackdropUrl { get; set; }
-        [Column("runtime")]
-        public int Runtime { get; set; }
-
     }
 }

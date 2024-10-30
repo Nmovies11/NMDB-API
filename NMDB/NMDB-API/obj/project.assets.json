@@ -1110,11 +1110,24 @@
       "NMDB-BLL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "NMDB-Common": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/NMDB-BLL.dll": {}
         },
         "runtime": {
           "bin/placeholder/NMDB-BLL.dll": {}
+        }
+      },
+      "NMDB-Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/NMDB-Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NMDB-Common.dll": {}
         }
       },
       "NMDB-DAL/1.0.0": {
@@ -1123,7 +1136,8 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
-          "NMDB-BLL": "1.0.0"
+          "NMDB-BLL": "1.0.0",
+          "NMDB-Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/NMDB-DAL.dll": {}
@@ -3263,6 +3277,11 @@
       "type": "project",
       "path": "../NMDB-BLL/NMDB-BLL.csproj",
       "msbuildProject": "../NMDB-BLL/NMDB-BLL.csproj"
+    },
+    "NMDB-Common/1.0.0": {
+      "type": "project",
+      "path": "../NMDB-Common/NMDB-Common.csproj",
+      "msbuildProject": "../NMDB-Common/NMDB-Common.csproj"
     },
     "NMDB-DAL/1.0.0": {
       "type": "project",

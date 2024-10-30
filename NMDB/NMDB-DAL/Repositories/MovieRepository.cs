@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NMDB_BLL.Interfaces.Repositories;
-using NMDB_BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NMDB_Common.Entities;
 
 namespace NMDB_DAL.Repositories
 {
@@ -16,7 +16,7 @@ namespace NMDB_DAL.Repositories
         {
             _context = context;
         }
-        public async Task<List<MovieDTO>> GetRecentMovies()
+        public async Task<List<Movie>> GetRecentMovies()
         {
                  return await _context.movie
                 .OrderByDescending(m => m.ReleaseDate)
@@ -24,11 +24,13 @@ namespace NMDB_DAL.Repositories
                 .ToListAsync();
         }
 
-        public async Task<MovieDTO> GetMovieById(int id)
+        public async Task<Movie> GetMovieById(int id)
         {
             var movie = await _context.movie
                 .Where(m => m.Id == id)
                 .FirstOrDefaultAsync();
+
+            
 
             if(movie == null)
             {
@@ -37,14 +39,21 @@ namespace NMDB_DAL.Repositories
             return movie;
         }
 
-        public async Task<List<MovieDTO>> GetMoviesByName(string name)
+        public async Task<List<Actor>> GetActorsByMovieId(int movieId)
+        {
+            return await _context.actors
+                .Where(a => a.Movies.Any(m => m.Id == movieId))
+                .ToListAsync();
+        }
+
+
+
+        public async Task<List<Movie>> GetMoviesByName(string name)
         {
             return await _context.movie
                 .Where(m => m.Title.Contains(name))
                 .ToListAsync();
 
         }
-
-
     }
 }

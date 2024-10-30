@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NMDB_BLL.Models.Season;
 
-namespace NMDB_BLL.Models.Show
+namespace NMDB_Common.DTO
 {
-    public class ShowDAO
+    public class ShowDTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Director { get; set; }
         public string Genre { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
+        public string BackdropUrl { get; set; }
+
+        public ICollection<SeasonDTO>? Seasons { get; set; } = new List<SeasonDTO>();
         
-        public ICollection<SeasonDAO>? Seasons { get; set; }
     }
 }

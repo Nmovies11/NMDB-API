@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NMDB_BLL.Models
+namespace NMDB_Common.DTO
 {
-    public class EpisodeDAO
+    public class EpisodeDTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -15,5 +15,6 @@ namespace NMDB_BLL.Models
         public string Director { get; set; }
         public int Runtime { get; set; }
         public int ShowId { get; set; }
+        public int EpisodeNumber { get; set; }
     }
 }
