@@ -16,7 +16,7 @@ namespace NMDB_Common.DTO
         public string Title { get; set; }
         public string Director { get; set; }
         public string Genre { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public DateOnly ReleaseDate { get; set; }
         public string Description { get; set; }
         public string BackdropUrl { get; set; }
         public int Runtime { get; set; }
