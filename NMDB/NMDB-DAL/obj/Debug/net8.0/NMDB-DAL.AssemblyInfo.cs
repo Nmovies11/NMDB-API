@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NMDB-DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21e643ce9827fa02c4fc4d05d6c53c3c8f40e2fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+596c17710886ad8e991986dbc11d99a2e402b498")]
 [assembly: System.Reflection.AssemblyProductAttribute("NMDB-DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NMDB-DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

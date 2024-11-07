@@ -53,20 +53,19 @@ namespace NMDB_BLL.Services
                 Description = showDTO.Description,
                 ImageUrl = showDTO.ImageUrl,
                 BackdropUrl = showDTO.BackdropUrl,
-                Seasons = showDTO.Seasons.Select(s => new SeasonDTO
+                Seasons = showDTO.Seasons?.Select(s => new SeasonDTO
                 {
                     Id = s.Id,
                     SeasonNumber = s.SeasonNumber,
-                    Episodes = s.Episodes.Select(e => new EpisodeDTO
+                    Episodes = s.Episodes?.Select(e => new EpisodeDTO
                     {
                         Id = e.Id,
                         Title = e.Title,
                         EpisodeNumber = e.EpisodeNumber,
                         Description = e.Description,
                         ReleaseDate = e.ReleaseDate
-                    }).ToList()
-                }).ToList()
-                
+                    }).ToList() ?? new List<EpisodeDTO>() 
+                }).ToList() ?? new List<SeasonDTO>() 
             };
 
             return show;

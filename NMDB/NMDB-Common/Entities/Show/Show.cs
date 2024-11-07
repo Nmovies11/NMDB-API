@@ -16,7 +16,7 @@ namespace NMDB_Common.Entities
         [Column("description")]
         public string Description { get; set; }
         [Column("release_date")]
-        public DateTime ReleaseDate { get; set; }
+        public DateOnly ReleaseDate { get; set; }
         [Column("poster_url")]
         public string ImageUrl { get; set; }
         [Column("backdrop_url")]

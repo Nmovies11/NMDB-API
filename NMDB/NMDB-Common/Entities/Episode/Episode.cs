@@ -21,7 +21,7 @@ namespace NMDB_Common.Entities
         [Column("description")]
         public string Description { get; set; }
         [Column("release_date")]
-        public DateTime ReleaseDate { get; set; }
+        public DateOnly ReleaseDate { get; set; }
         [Column("director")]
         public string Director { get; set; }
     }

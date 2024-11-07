@@ -19,15 +19,15 @@ namespace NMDB_API.Controllers
         [HttpGet("RecentShows")]
         public async Task<IActionResult> GetRecentShows()
         {
-            List<ShowDTO> movies = await _showService.GetRecentShows();
-            return Ok(movies);
+            List<ShowDTO> shows = await _showService.GetRecentShows();
+            return Ok(shows);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetShowById(int id)
         {
-            ShowDTO movie = await _showService.GetShowById(id);
-            return Ok(movie);
+            ShowDTO show = await _showService.GetShowById(id);
+            return Ok(show);
         }
 
     }

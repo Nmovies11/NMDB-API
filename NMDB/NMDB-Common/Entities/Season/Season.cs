@@ -21,7 +21,7 @@ namespace NMDB_Common.Entities
         [Column("episode_count")]
         public int EpisodeCount { get; set; }
         [Column("release_date")]
-        public DateTime ReleaseDate { get; set; }
+        public DateOnly ReleaseDate { get; set; }
         [Column("description")]
         public string Description { get; set; }
         [Column("poster_url")]
