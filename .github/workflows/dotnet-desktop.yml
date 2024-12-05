@@ -77,5 +77,5 @@ jobs:
         with:
           app-name: 'NMDB-API'
           slot-name: 'Production' 
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_2ea17b288cb24da989d0fd87b8866f59 }}
-          images: 'reeliocr.azurecr.io/${{ secrets.CONTAINER_USERNAME }}/r:${{ github.sha }}'
+          publish-profile: ${{ secrets.AZURE_PUBLISH}}
+          images: 'reeliocr.azurecr.io/nmdb-api:${{ github.sha }}'
