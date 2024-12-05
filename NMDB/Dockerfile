@@ -1,4 +1,4 @@
-# Build Stage
+Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 # Set the working directory
@@ -7,10 +7,13 @@ WORKDIR /source
 # Copy all project files into the container
 COPY . .
 
-# Restore dependencies for the solution (instead of individual projects)
-RUN dotnet restore "./NMDB.sln"
+# Debugging step to ensure NMDB.sln is copied
+RUN ls -alh /source
 
-# Publish all projects in one step
+# Restore dependencies for the solution with detailed logging
+RUN dotnet restore "./NMDB.sln" -v detailed
+
+# Publish all projects in one step (optional: add more specific restore for each project)
 RUN dotnet publish "./NMDB-API/NMDB-API.csproj" -c Release -o /app --no-restore && \
     dotnet publish "./NMDB-BLL/NMDB-BLL.csproj" -c Release -o /app --no-restore && \
     dotnet publish "./NMDB-DAL/NMDB-DAL.csproj" -c Release -o /app --no-restore && \
