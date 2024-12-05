@@ -19,7 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Setup .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -59,7 +58,7 @@ jobs:
       - name: Build and push container image to registry
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./NMDB
           push: true
           tags:   reeliocr.azurecr.io/nmdb-api:${{ github.sha }}
           file: ./NMDB/Dockerfile
