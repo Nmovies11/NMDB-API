@@ -1,7 +1,5 @@
-Build Stage
+# Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-# Set the working directory
 WORKDIR /source
 
 # Copy all project files into the container
@@ -21,8 +19,6 @@ RUN dotnet publish "./NMDB-API/NMDB-API.csproj" -c Release -o /app --no-restore 
 
 # Serve Stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS serve
-
-# Set the working directory for the app
 WORKDIR /app
 
 # Copy the build output from the build stage to the serve stage
