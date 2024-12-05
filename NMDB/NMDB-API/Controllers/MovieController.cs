@@ -37,5 +37,14 @@ namespace NMDB_API.Controllers
             return Ok(movies);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 10)
+        {
+            // Fetch paginated movies from the service layer
+            var paginatedMovies = await _movieService.GetMovies(pageNumber, pageSize);
+
+            // Return the paginated data
+            return Ok(paginatedMovies);
+        }
     }
 }

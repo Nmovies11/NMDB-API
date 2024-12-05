@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NMDB_Common.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -24,9 +25,15 @@ namespace NMDB_Common.Entities
         public string ImageUrl { get; set; }
         [Column("backdrop_url")]
         public string BackdropUrl { get; set; }
+        [Column("testValue")]
+        public string TestValue { get; set; }
         [Column("runtime")]
         public int Runtime { get; set; }
-        public ICollection<Actor>? Actors { get; set; }
+        [Column("genre")]
+        public string Genre { get; set; }
+        [Column("rating")]
+        public double Rating { get; set; }
+        public ICollection<MovieActor> MovieActors { get; set; }
 
     }
 }

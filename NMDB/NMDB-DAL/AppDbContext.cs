@@ -15,31 +15,28 @@ public class AppDbContext : DbContext
     public DbSet<Show> Shows { get; set; }
     public DbSet<Season> Seasons { get; set; }
     public DbSet<Episode> Episodes { get; set; }
+    public DbSet<MovieActor> MovieActors { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Movie>()
-            .HasMany(m => m.Actors)
-            .WithMany(a => a.Movies)
-            .UsingEntity<Dictionary<string, object>>(
-                "movie_actors",
-                j => j
-                    .HasOne<Actor>()
-                    .WithMany()
-                    .HasForeignKey("actor_id")
-                    .HasConstraintName("FK_movie_actors_Actors"),
-                j => j
-                    .HasOne<Movie>()
-                    .WithMany()
-                    .HasForeignKey("movie_id")
-                    .HasConstraintName("FK_movie_actors_Movies"),
-                j =>
-                {
-                    j.Property<int>("movie_id");
-                    j.Property<int>("actor_id");
-                    j.HasKey("movie_id", "actor_id");
-                });
+        modelBuilder.Entity<MovieActor>()
+            .HasKey(ma => new { ma.MovieId, ma.ActorId }); // Composite Key
+
+        modelBuilder.Entity<MovieActor>()
+            .HasOne(ma => ma.Movie)
+            .WithMany(m => m.MovieActors)
+            .HasForeignKey(ma => ma.MovieId)
+            .HasConstraintName("FK_movie_actors_Movies");
+
+        modelBuilder.Entity<MovieActor>()
+            .HasOne(ma => ma.Actor)
+            .WithMany(a => a.MovieActors)
+            .HasForeignKey(ma => ma.ActorId)
+            .HasConstraintName("FK_movie_actors_Actors");
+
+        modelBuilder.Entity<MovieActor>()
+            .Property(ma => ma.Role).HasMaxLength(100);
 
         modelBuilder.Entity<Season>()
             .HasOne(s => s.Show).WithMany(s => s.Seasons).HasForeignKey(s => s.ShowId);

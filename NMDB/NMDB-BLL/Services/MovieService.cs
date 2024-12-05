@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NMDB_Common.Entities;
 using NMDB_Common.DTO;
+using NMDB_BLL.Helpers;
 
 namespace NMDB_BLL.Services
 {
@@ -32,7 +33,8 @@ namespace NMDB_BLL.Services
                     Id = movieDTO.Id,
                     Title = movieDTO.Title,
                     Director = movieDTO.Director,
-                    ImageUrl = movieDTO.ImageUrl
+                    ImageUrl = movieDTO.ImageUrl,
+                    ReleaseDate = movieDTO.ReleaseDate  
                 };
 
                 movies.Add(movie);
@@ -58,18 +60,20 @@ namespace NMDB_BLL.Services
 
             };
 
-            var actors = await _movieRepository.GetActorsByMovieId(id);
-            foreach (var actor in actors)
+            var movieActors = await _movieRepository.GetActorsByMovieId(id);
+            foreach (var movieActor in movieActors)
             {
                 movie.Actors.Add(new ActorDTO
                 {
-                    Id = actor.Id,
-                    Name = actor.Name,
-                    ImageUrl = actor.ImageUrl
+                    Id = movieActor.Actor.Id,
+                    Name = movieActor.Actor.Name,
+                    ImageUrl = movieActor.Actor.ImageUrl,
+                    Role = movieActor.Role 
                 });
             }
 
             return movie;
+
         }
 
         public async Task<List<MovieDTO>> GetMoviesByName(string name)
@@ -95,6 +99,24 @@ namespace NMDB_BLL.Services
             return movies;
         }
 
+        public async Task<PaginatedList<MovieDTO>> GetMovies(int pageNumber, int pageSize)
+        {
+            // Step 1: Call the repository to get the paginated list of Movie entities
+            var paginatedMovies = await _movieRepository.GetMovies(pageNumber, pageSize);
+
+            // Step 2: Convert the Movie entities into MovieDTOs
+            var movieDTOs = paginatedMovies.Items.Select(movie => new MovieDTO
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                Director = movie.Director,
+                ImageUrl = movie.ImageUrl,
+                ReleaseDate = movie.ReleaseDate
+            }).ToList();
+
+            // Step 3: Return a PaginatedList of MovieDTOs
+            return new PaginatedList<MovieDTO>(movieDTOs, paginatedMovies.TotalCount, pageNumber, pageSize);
+        }
 
 
         public void GetMovieByDirector(string director)

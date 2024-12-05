@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NMDB-BLL", "NMDB-BLL\NMDB-B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NMDB-DAL", "NMDB-DAL\NMDB-DAL.csproj", "{F308EA0D-83F2-4AF5-9010-F83977C3456E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMDB-Common", "NMDB-Common\NMDB-Common.csproj", "{52DC22C9-37F1-494C-B9D3-A42C43673EE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NMDB-Common", "NMDB-Common\NMDB-Common.csproj", "{52DC22C9-37F1-494C-B9D3-A42C43673EE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AF58B0B-3CEA-418C-A32B-47DC909CB084}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

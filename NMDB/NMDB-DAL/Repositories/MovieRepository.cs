@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NMDB_Common.Entities;
+using NMDB_BLL.Helpers;
+using NMDB_Common.DTO;
 
 namespace NMDB_DAL.Repositories
 {
@@ -39,10 +41,11 @@ namespace NMDB_DAL.Repositories
             return movie;
         }
 
-        public async Task<List<Actor>> GetActorsByMovieId(int movieId)
+        public async Task<List<MovieActor>> GetActorsByMovieId(int movieId)
         {
-            return await _context.actors
-                .Where(a => a.Movies.Any(m => m.Id == movieId))
+            return await _context.MovieActors
+                .Include(ma => ma.Actor) // Include Actor to get actor details
+                .Where(ma => ma.MovieId == movieId)
                 .ToListAsync();
         }
 
@@ -53,6 +56,23 @@ namespace NMDB_DAL.Repositories
             return await _context.movie
                 .Where(m => m.Title.Contains(name))
                 .ToListAsync();
+
+        }
+
+
+        public async Task<PaginatedList<Movie>> GetMovies(int pageNumber, int pageSize)
+        {
+            var totalCount = await _context.movie.CountAsync();
+
+            // Get the paginated list of Movie entities
+            var movies = await _context.movie
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            // Return the paginated list
+            return new PaginatedList<Movie>(movies, totalCount, pageNumber, pageSize);
+
 
         }
     }

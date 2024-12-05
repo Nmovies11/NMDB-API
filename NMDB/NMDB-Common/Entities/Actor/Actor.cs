@@ -20,6 +20,8 @@ namespace NMDB_Common.Entities
         [Column("image_url")]
         public string ImageUrl { get; set; }
 
-        public ICollection<Movie>? Movies { get; set; }
+        public ICollection<MovieActor> MovieActors { get; set; }
+
+
     }
 }
