@@ -62,7 +62,7 @@ jobs:
           context: .
           push: true
           tags:   reeliocr.azurecr.io/nmdb-api:${{ github.sha }}
-          file: ./Dockerfile
+          file: ./NMDB/Dockerfile
 
   deploy_to_azure:
     runs-on: ubuntu-latest
