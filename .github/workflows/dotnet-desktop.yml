@@ -61,8 +61,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: reeliocr.azurecr.io/${{ secrets.CONTAINER_USERNAME }}/r:${{ github.sha }}
-          file: ./Dockerfile
+ERROR: invalid tag "reeliocr.azurecr.io/***/r:bdccd9beed403b047c7679f5f72857f66affb869": repository name must be lowercase
+Error: buildx failed with: ERROR: invalid tag "reeliocr.azurecr.io/***/r:bdccd9beed403b047c7679f5f72857f66affb869": repository name must be lowercase
+            file: ./Dockerfile
 
   deploy_to_azure:
     runs-on: ubuntu-latest
@@ -79,4 +80,4 @@ jobs:
           app-name: 'NMDB-API'
           slot-name: 'Production' 
           publish-profile: ${{ secrets.AZURE_PUBLISH }}
-          images: 'reeliocr.azurecr.io/${{ secrets.CONTAINER_USERNAME }}/r:${{ github.sha }}'
+          images: '  reeliocr.azurecr.io/nmdb-api:${{ github.sha }}'
