@@ -25,8 +25,6 @@ namespace NMDB_Common.Entities
         public string ImageUrl { get; set; }
         [Column("backdrop_url")]
         public string BackdropUrl { get; set; }
-        [Column("testValue")]
-        public string TestValue { get; set; }
         [Column("runtime")]
         public int Runtime { get; set; }
         [Column("genre")]

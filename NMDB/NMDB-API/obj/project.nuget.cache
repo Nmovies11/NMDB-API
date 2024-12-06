@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "se12T4Z8jSIQ/vemoWjD0h6s39DE/5Phx91zyQ/meMcGTRx8pD9WvLrYHBIa1MfQgFdhNN0N+OkLv32+lCkgpw==",
+  "dgSpecHash": "m8EI1eGMcSTHag8Id8aL969xPGePxPf+8tF1IwMr+e6pDngSHtuLQRUMXO+6lEdMJMWAn72dD12ozubf7f6lFQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\break\\Documents\\School\\Fontys\\Software\\Semester 3\\IP\\Reelio\\NMDB-API\\NMDB\\NMDB-API\\NMDB-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\break\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
     "C:\\Users\\break\\.nuget\\packages\\azure.extensions.aspnetcore.configuration.secrets\\1.3.2\\azure.extensions.aspnetcore.configuration.secrets.1.3.2.nupkg.sha512",
     "C:\\Users\\break\\.nuget\\packages\\azure.identity\\1.13.1\\azure.identity.1.13.1.nupkg.sha512",
+    "C:\\Users\\break\\.nuget\\packages\\azure.security.keyvault.certificates\\4.7.0\\azure.security.keyvault.certificates.4.7.0.nupkg.sha512",
     "C:\\Users\\break\\.nuget\\packages\\azure.security.keyvault.secrets\\4.7.0\\azure.security.keyvault.secrets.4.7.0.nupkg.sha512",
     "C:\\Users\\break\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\break\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

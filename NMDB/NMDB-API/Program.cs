@@ -1,4 +1,3 @@
-
 using NMDB_BLL.Interfaces.Repositories;
 using NMDB_DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +20,7 @@ builder.Services.AddScoped<MovieService>();
 builder.Services.AddScoped<IShowRepository, ShowRepository>();
 builder.Services.AddScoped<ShowService>();
 
+
 if (builder.Environment.IsProduction())
 {
     var keyVaultURL = builder.Configuration.GetValue<string>("KeyVault:KeyvaultURL");
@@ -32,9 +32,14 @@ if (builder.Environment.IsProduction())
 
     var connectionString = builder.Configuration["NMDBDatabaseURLProd"];
 
+
     if (string.IsNullOrEmpty(connectionString))
     {
-        throw new InvalidOperationException("Database connection string 'DatabaseURLProd' is missing.");
+        throw new InvalidOperationException("Database connection string 'NMDBDatabaseURLProd' is missing.");
+    }
+    else
+    {
+        Console.WriteLine("Connection string sucesfully retrieved from KeyVault");
     }
 
     builder.Services.AddDbContext<AppDbContext>(options =>
@@ -64,14 +69,24 @@ if(builder.Environment.IsDevelopment())
 }
 
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
 
 
 
 var app = builder.Build();
 
+app.UseCors();
 
 
-    app.UseSwagger();
+
+app.UseSwagger();
     app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
@@ -80,11 +95,13 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();  
 }
 
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/", () => Results.Json(new { message = "Welcome to My API", status = "Running" })).ExcludeFromDescription();
+    
 
 app.Run();
