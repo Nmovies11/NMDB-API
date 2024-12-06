@@ -46,11 +46,5 @@ namespace NMDB_API.Controllers
             // Return the paginated data
             return Ok(paginatedMovies);
         }
-
-        [HttpGet("Test")]
-        public IActionResult Test()
-        {
-            return Ok("Test");
-        }
     }
 }
