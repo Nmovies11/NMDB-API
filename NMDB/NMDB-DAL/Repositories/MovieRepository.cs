@@ -43,10 +43,18 @@ namespace NMDB_DAL.Repositories
 
         public async Task<List<MovieActor>> GetActorsByMovieId(int movieId)
         {
-            return await _context.MovieActors
-                .Include(ma => ma.Actor) // Include Actor to get actor details
+            var t =  await _context.MovieActors
+                .Include(ma => ma.Actor) 
                 .Where(ma => ma.MovieId == movieId)
                 .ToListAsync();
+            Console.WriteLine("Hello");
+
+            if(t == null)
+            {
+                return null;
+            }
+
+            return t;
         }
 
 
@@ -60,19 +68,32 @@ namespace NMDB_DAL.Repositories
         }
 
 
-        public async Task<PaginatedList<Movie>> GetMovies(int pageNumber, int pageSize)
+        public async Task<PaginatedList<Movie>> GetMovies(int pageNumber, int pageSize, string? searchQuery, string? genre)
         {
-            var totalCount = await _context.movie.CountAsync();
+            var query = _context.movie.AsQueryable();
 
-            // Get the paginated list of Movie entities
-            var movies = await _context.movie
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                query = query.Where(movie =>
+                    movie.Title.Contains(searchQuery) || movie.Description.Contains(searchQuery));
+            }
+
+            if (!string.IsNullOrWhiteSpace(genre))
+            {
+                query = query.Where(movie => movie.Genre == genre);
+            }
+
+            // Get the total count of filtered records
+            var totalCount = await query.CountAsync();
+
+            // Apply pagination
+            var movies = await query
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
             // Return the paginated list
             return new PaginatedList<Movie>(movies, totalCount, pageNumber, pageSize);
-
 
         }
     }

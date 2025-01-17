@@ -22,6 +22,9 @@ namespace NMDB_Common.Entities
         [Column("backdrop_url")]
         public string BackdropUrl { get; set; }
 
+        [Column("genre")]
+        public string Genre { get; set; }
+
         public ICollection<Season>? Seasons { get; set; }
     }
 }

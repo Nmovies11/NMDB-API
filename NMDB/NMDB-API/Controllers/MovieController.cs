@@ -27,6 +27,10 @@ namespace NMDB_API.Controllers
         public async Task<IActionResult> GetMovieById(int id)
         {
             MovieDTODetails movie = await _movieService.GetMovieById(id);
+            if(movie == null)
+            {
+                return NotFound();
+            }
             return Ok(movie);
         }
 
@@ -38,10 +42,14 @@ namespace NMDB_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(
+            int pageNumber = 1,
+            int pageSize = 10,
+            string? searchQuery = null,
+            string? genre = null)
         {
             // Fetch paginated movies from the service layer
-            var paginatedMovies = await _movieService.GetMovies(pageNumber, pageSize);
+            var paginatedMovies = await _movieService.GetMovies(pageNumber, pageSize, searchQuery, genre);
 
             // Return the paginated data
             return Ok(paginatedMovies);

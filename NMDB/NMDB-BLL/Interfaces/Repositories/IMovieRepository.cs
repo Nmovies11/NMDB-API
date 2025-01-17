@@ -15,7 +15,7 @@ namespace NMDB_BLL.Interfaces.Repositories
         public Task<Movie> GetMovieById(int id);
         public Task<List<Movie>> GetMoviesByName(string name);
         public Task<List<MovieActor>> GetActorsByMovieId(int movieId);
-        public Task<PaginatedList<Movie>> GetMovies(int pageNumber, int pageSize);
+        public Task<PaginatedList<Movie>> GetMovies(int pageNumber, int pageSize, string? searchQuery, string? genre);
 
     }
 }

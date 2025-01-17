@@ -48,6 +48,11 @@ namespace NMDB_BLL.Services
         {
             Movie movieDTO = await _movieRepository.GetMovieById(id);
 
+            if(movieDTO == null)
+            {
+                return null;
+            }
+
             MovieDTODetails movie = new MovieDTODetails
             {
                 Id = movieDTO.Id,
@@ -59,6 +64,7 @@ namespace NMDB_BLL.Services
                 BackdropUrl = movieDTO.BackdropUrl
 
             };
+
 
             var movieActors = await _movieRepository.GetActorsByMovieId(id);
             foreach (var movieActor in movieActors)
@@ -99,34 +105,22 @@ namespace NMDB_BLL.Services
             return movies;
         }
 
-        public async Task<PaginatedList<MovieDTO>> GetMovies(int pageNumber, int pageSize)
+        public async Task<PaginatedList<MovieDTO>> GetMovies(int pageNumber, int pageSize, string? searchQuery, string? genre)
         {
-            // Step 1: Call the repository to get the paginated list of Movie entities
-            var paginatedMovies = await _movieRepository.GetMovies(pageNumber, pageSize);
+            var paginatedMovies = await _movieRepository.GetMovies(pageNumber, pageSize, searchQuery, genre);
 
-            // Step 2: Convert the Movie entities into MovieDTOs
             var movieDTOs = paginatedMovies.Items.Select(movie => new MovieDTO
             {
                 Id = movie.Id,
                 Title = movie.Title,
                 Director = movie.Director,
                 ImageUrl = movie.ImageUrl,
+                Genre = movie.Genre,
                 ReleaseDate = movie.ReleaseDate
             }).ToList();
 
-            // Step 3: Return a PaginatedList of MovieDTOs
             return new PaginatedList<MovieDTO>(movieDTOs, paginatedMovies.TotalCount, pageNumber, pageSize);
         }
 
-
-        public void GetMovieByDirector(string director)
-        {
-            //TODO
-        }
-
-        public void GetMovieByGenre(string genre)
-        {
-            //TODO
-        }
     }
 }

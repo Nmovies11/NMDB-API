@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NMDBTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+324506f8ece05f24f7fc92e454f19360774df822")]
 [assembly: System.Reflection.AssemblyProductAttribute("NMDBTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NMDBTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

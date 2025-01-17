@@ -1,11 +1,7 @@
 ﻿using NMDB_BLL.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NMDB_Common.Entities;
 using NMDB_Common.DTO;
+using NMDB_BLL.Helpers;
 
 namespace NMDB_BLL.Services
 {
@@ -69,6 +65,22 @@ namespace NMDB_BLL.Services
             };
 
             return show;
+        }
+
+        public async Task<PaginatedList<ShowDTO>> GetShows(int pageNumber, int pageSize, string? searchQuery, string? genre)
+        {
+            var paginatedMovies = await _showRepository.GetShows(pageNumber, pageSize, searchQuery, genre);
+
+            var movieDTOs = paginatedMovies.Items.Select(movie => new ShowDTO
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                ImageUrl = movie.ImageUrl,
+                Genre = movie.Genre,
+                ReleaseDate = movie.ReleaseDate
+            }).ToList();
+
+            return new PaginatedList<ShowDTO>(movieDTOs, paginatedMovies.TotalCount, pageNumber, pageSize);
         }
 
     }
